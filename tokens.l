@@ -9,6 +9,8 @@
 "se"    {return tokenIf;}
 "entao"    {return tokenThen;}
 "senao"    {return tokenElse;}
+"enquanto" {return tokenWhile;}
+"faca"  {return tokenDo;}
 ">="    {return tokenGE;}
 "<="    {return tokenLE;}
 ">"    {return tokenG;}
@@ -21,7 +23,7 @@
 [a-zA-Z]+              {yylval.str = yytext; return word;}
 [0-9]+                 {yylval.num = atoi(yytext); return number;}
 [ \t\n]                ;
-[-+=;]           	   {return yytext[0];}
+[-+=;*/^%]           	   {return yytext[0];}
 .                      {ECHO; yyerror ("unexpected character");}
 
 %%

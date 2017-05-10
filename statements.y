@@ -6,12 +6,16 @@ int symbols[52];
 int symbolVal(char symbol);
 void updateSymbolVal(char symbol, int val);
 void updateSymbolValConditional(int condition, char symbol, int val);
+void whileLoop(char id, int token, int condition, int op, int exp);
+int switchop(char a, int op, int b);
+
 int EQStatement(char symbol, int val);
 int GEStatement(char symbol, int val);
 int LEStatement(char symbol, int val);
 int NEStatement(char symbol, int val);
 int GStatement(char symbol, int val);
 int LStatement(char symbol, int val);
+
 
 %}
 
@@ -24,26 +28,27 @@ int LStatement(char symbol, int val);
 %token <str> word 
 
 
-%token tokenIf tokenThen tokenLE tokenGE tokenEQ tokenNE tokenOR tokenAND tokenElse tokenG tokenL
+%token tokenIf tokenThen tokenLE tokenGE tokenEQ tokenNE tokenOR tokenAND tokenElse tokenG tokenL tokenWhile tokenDo
 %right '=' UMINUS
-%right '^'
-%left tokenG tokenL tokenLE tokenGE tokenEQ tokenNE tokenAND tokenOR '+''-' '*''/' '!' '<' '>' 
+%left tokenG tokenL tokenLE tokenGE tokenEQ tokenNE tokenAND tokenOR '+''-' '*''/' '!' '<' '>' '%'
 
 
 %type <num> line exp term
 %type <id> assignment
 %type <num> conditions
-
+%type <num> op
+%type <num> relationalToken
 %%
 
-/* descriptions of expected inputs     corresponding actions (in C) */
 
 line    : assignment ';'		{;}
         | conditional ';'       {;}
+        | whileloop ';'         {printf("WHILE-LOOP");}
 		| exit_command ';'		{exit(EXIT_SUCCESS);}
 		| print exp ';'			{printf("Printing %d\n", $2);}
 		| print word ';'        {printf("Printing %s\n", $2);}
 		| line assignment ';'	{;}
+		| line whileloop ';'    {printf("WHILE-LOOP");}
 		| line conditional ';'	{;}
 		| line print exp ';'	{printf("Printing %d\n", $3);}
 		| line print word ';'   {printf("Printing %s\n", $3);}
@@ -60,19 +65,37 @@ exp    	: term                           {$$ = $1;}
         | exp '*' term                   {$$ = $1 * $3;}
         | exp '/' term                   {$$ = $1 / $3;}
        	| exp '^' term                   {$$ = $1 ^ $3;}
+       	| exp '%' term                   {$$ = $1 % $3;}
        	;
        	
 term   	: number                {$$ = $1;}
 		| identifier			{$$ = symbolVal($1);} 
         ;
 
-conditional : tokenIf conditions tokenThen identifier '=' exp     { updateSymbolValConditional($2,$4,$6); }        
+conditional : tokenIf conditions tokenThen identifier '=' exp     { updateSymbolValConditional($2,$4,$6); } 
             ;
-                        
-            
+
+whileloop   : tokenWhile identifier relationalToken number tokenDo identifier '=' identifier op exp    { whileLoop($2,$3,$4,$9,$10); }
+
+            ;
+
+relationalToken :     tokenEQ     {$$ = 1;} 
+                    | tokenLE     {$$ = 2;}
+                    | tokenGE     {$$ = 3;}
+                    | tokenNE     {$$ = 4;}
+                    | tokenG      {$$ = 5;}
+                    | tokenL      {$$ = 6;}
+                ;       
+
+op :  '+'  {$$ = 1;} 
+    | '-'  {$$ = 2;} 
+    | '*'  {$$ = 3;}
+    | '/'  {$$ = 4;}
+    ;
+
 conditions : 
 
-        identifier tokenEQ number        {$$ = EQStatement($1,$3);} 
+          identifier tokenEQ number      {$$ = EQStatement($1,$3);}  
        	| identifier tokenLE number      {$$ = LEStatement($1,$3);}
        	| identifier tokenGE number      {$$ = GEStatement($1,$3);}
        	| identifier tokenNE number      {$$ = NEStatement($1,$3);}
@@ -81,9 +104,85 @@ conditions :
         ;
 
 
-%%                     /* C code */
+    
+        
+%%                    
 
 
+void whileLoop(char id, int token, int condition, int op, int exp)
+{
+    printf("WHILE-Loop");
+    int idvalue = symbolVal(id);
+    int aux;
+    switch(token){
+        //==
+        case 1 :
+            while(idvalue == condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+            }
+        //<=
+        case 2 :
+            while(idvalue <= condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+                
+            }            
+        //>=
+        case 3 :
+            while(idvalue >= condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+            }     
+        //!=
+        case 4 :
+            while(idvalue != condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+            } 
+        //>
+        case 5 :
+            while(idvalue > condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+            } 
+        //<
+        case 6 :
+            while(idvalue < condition)
+            {   
+                aux = switchop(id, op, exp);
+                updateSymbolVal(id, aux);
+                idvalue = symbolVal(id);
+            }
+            
+    }
+}
+
+//pra nao ficar switch dentro de outro switch
+int switchop(char a, int op, int b)
+{
+    int idvalue = symbolVal(a);
+    switch(op){
+        //+
+        case 1 :  return idvalue + b;
+        //-
+        case 2 :  return idvalue - b;
+        //*
+        case 3 :  return idvalue * b;
+        ///
+        case 4 :  return idvalue / b;
+    }
+}
 
 
 int EQStatement(char symbol, int val)
@@ -181,14 +280,12 @@ int computeSymbolIndex(char token)
 	return idx;
 } 
 
-/* returns the value of a given symbol */
 int symbolVal(char symbol)
 {
 	int bucket = computeSymbolIndex(symbol);
 	return symbols[bucket];
 }
 
-/* updates the value of a given symbol */
 void updateSymbolVal(char symbol, int val)
 {
 	int bucket = computeSymbolIndex(symbol);

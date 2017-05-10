@@ -61,7 +61,9 @@ extern int yydebug;
     tokenElse = 271,
     tokenG = 272,
     tokenL = 273,
-    UMINUS = 274
+    tokenWhile = 274,
+    tokenDo = 275,
+    UMINUS = 276
   };
 #endif
 /* Tokens.  */
@@ -81,17 +83,19 @@ extern int yydebug;
 #define tokenElse 271
 #define tokenG 272
 #define tokenL 273
-#define UMINUS 274
+#define tokenWhile 274
+#define tokenDo 275
+#define UMINUS 276
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 18 "statements.y" /* yacc.c:1909  */
+#line 22 "statements.y" /* yacc.c:1909  */
 int num; char id; char* str;
 
-#line 95 "y.tab.h" /* yacc.c:1909  */
+#line 99 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
