@@ -43,7 +43,7 @@ int LStatement(char symbol, int val);
 
 line    : assignment ';'		{;}
         | conditional ';'       {;}
-        | whileloop ';'         {printf("WHILE-LOOP");}
+        | whileloop ';'         {;}
 		| exit_command ';'		{exit(EXIT_SUCCESS);}
 		| print exp ';'			{printf("Printing %d\n", $2);}
 		| print word ';'        {printf("Printing %s\n", $2);}
@@ -75,7 +75,7 @@ term   	: number                {$$ = $1;}
 conditional : tokenIf conditions tokenThen identifier '=' exp     { updateSymbolValConditional($2,$4,$6); } 
             ;
 
-whileloop   : tokenWhile identifier relationalToken number tokenDo identifier '=' identifier op exp    { whileLoop($2,$3,$4,$9,$10); }
+whileloop   : tokenWhile identifier relationalToken number tokenDo identifier '=' identifier op term    { whileLoop($2,$3,$4,$9,$10); }
 
             ;
 
@@ -111,7 +111,6 @@ conditions :
 
 void whileLoop(char id, int token, int condition, int op, int exp)
 {
-    printf("WHILE-Loop");
     int idvalue = symbolVal(id);
     int aux;
     switch(token){
