@@ -14,8 +14,9 @@ Implementação Bison/Yacc + FLEX.
 
 
 Um 'identificador' é uma variável que pode ser um caracter de 'a' à 'z' ou de 'A' à 'Z' ( [a-zA-Z] ).
+Um 'termo' é um valor que pode ser um identificador ou um número.
 Uma 'expressão' é um valor que pode ser representado por números ou expressões algébricas, e podem conter identificadores ( [0-9]+ | exp ). 
-Uma 'condição' é uma expressão envolvendo um identificador, um operador relacional e uma expressão.
+Uma 'condição' é uma expressão envolvendo um identificador, um operador relacional e uma expressão (identificador operador_relacional expressão).
 
 Comando de atribuição:
 
@@ -24,3 +25,7 @@ Comando de atribuição:
 Comando de condicional (if-then):
 
     se condição entao identificador = expressão;
+    
+Comando de repetição 'enquanto-faça'(while):
+    
+    enquanto identificador operador_relacional expressão faca identificador = identificador operador termo;
