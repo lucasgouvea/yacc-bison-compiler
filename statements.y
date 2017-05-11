@@ -75,7 +75,7 @@ term   	: number                {$$ = $1;}
 conditional : tokenIf conditions tokenThen identifier '=' exp     { updateSymbolValConditional($2,$4,$6); } 
             ;
 
-whileloop   : tokenWhile identifier relationalToken number tokenDo identifier '=' identifier op term    { whileLoop($2,$3,$4,$9,$10); }
+whileloop   : tokenWhile identifier relationalToken exp tokenDo identifier '=' identifier op term    { whileLoop($2,$3,$4,$9,$10); }
 
             ;
 
