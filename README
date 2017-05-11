@@ -1,0 +1,10 @@
+Trabalho da disciplina Compiladores sob orientação da Profª Drª Thatyana de Faria Piola Seraphim, no curso de Engenharia da Computação - Universidade Federal de Itajubá.
+
+Objetivo: criar, desenvolver e implementar um analisador léxico e um analisador sintático.
+Suporte à comandos de:
+    -Atribuição
+    -Entrada e saída
+    -Condicionais
+    -Repetição
+Suporte à operadores relacionais, lógicos e aritméticos.
+Implementação Bison/Yacc + FLEX.
