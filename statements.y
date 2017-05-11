@@ -95,12 +95,12 @@ op :  '+'  {$$ = 1;}
 
 conditions : 
 
-          identifier tokenEQ number      {$$ = EQStatement($1,$3);}  
-       	| identifier tokenLE number      {$$ = LEStatement($1,$3);}
-       	| identifier tokenGE number      {$$ = GEStatement($1,$3);}
-       	| identifier tokenNE number      {$$ = NEStatement($1,$3);}
-        | identifier tokenG number       {$$ = NEStatement($1,$3);}
-        | identifier tokenL number       {$$ = NEStatement($1,$3);}
+          identifier tokenEQ exp      {$$ = EQStatement($1,$3);}  
+       	| identifier tokenLE exp      {$$ = LEStatement($1,$3);}
+       	| identifier tokenGE exp      {$$ = GEStatement($1,$3);}
+       	| identifier tokenNE exp      {$$ = NEStatement($1,$3);}
+        | identifier tokenG exp       {$$ = NEStatement($1,$3);}
+        | identifier tokenL exp       {$$ = NEStatement($1,$3);}
         ;
 
 

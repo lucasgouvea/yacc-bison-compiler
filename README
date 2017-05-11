@@ -8,3 +8,19 @@ Suporte à comandos de:
     -Repetição
 Suporte à operadores relacionais, lógicos e aritméticos.
 Implementação Bison/Yacc + FLEX.
+
+
+--Manual--
+
+
+Um 'identificador' é uma variável que pode ser um caracter de 'a' à 'z' ou de 'A' à 'Z' ( [a-zA-Z] ).
+Uma 'expressão' é um valor que pode ser representado por números ou expressões algébricas, e podem conter identificadores ( [0-9]+ | exp ). 
+Uma 'condição' é uma expressão envolvendo um identificador, um operador relacional e uma expressão.
+
+Comando de atribuição:
+
+    identificador = expressão;
+
+Comando de condicional (if-then):
+
+    se condição entao identificador = expressão;
