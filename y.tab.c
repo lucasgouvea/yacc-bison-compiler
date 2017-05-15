@@ -65,7 +65,7 @@
 #line 1 "statements.y" /* yacc.c:339  */
 
 void yyerror (char *s);
-#include <stdio.h>     /* C declarations used in actions */
+#include <stdio.h>    
 #include <stdlib.h>
 int symbols[52];
 int symbolVal(char symbol);
@@ -1315,19 +1315,19 @@ yyreduce:
     {
         case 2:
 #line 44 "statements.y" /* yacc.c:1646  */
-    {;}
+    {printf("\n Atribuicao  \n");}
 #line 1320 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 45 "statements.y" /* yacc.c:1646  */
-    {;}
+    {printf("\n Condicional 'if' \n");}
 #line 1326 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 46 "statements.y" /* yacc.c:1646  */
-    {;}
+    {printf("\n Laco de repeticao 'while' \n");}
 #line 1332 "y.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1339,43 +1339,43 @@ yyreduce:
 
   case 6:
 #line 48 "statements.y" /* yacc.c:1646  */
-    {printf("Printing %d\n", (yyvsp[-1].num));}
+    {printf("Saida : %d\n", (yyvsp[-1].num));}
 #line 1344 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 49 "statements.y" /* yacc.c:1646  */
-    {printf("Printing %s\n", (yyvsp[-1].str));}
+    {printf("Saida : %s\n", (yyvsp[-1].str));}
 #line 1350 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 50 "statements.y" /* yacc.c:1646  */
-    {;}
+    {printf("\n Atribuicao \n");}
 #line 1356 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 51 "statements.y" /* yacc.c:1646  */
-    {printf("WHILE-LOOP");}
+    {printf("\n Laco de repetico 'while' \n");}
 #line 1362 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 52 "statements.y" /* yacc.c:1646  */
-    {;}
+    {printf("\n Condicional \n");}
 #line 1368 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 53 "statements.y" /* yacc.c:1646  */
-    {printf("Printing %d\n", (yyvsp[-1].num));}
+    {printf("Saida : %d\n", (yyvsp[-1].num));}
 #line 1374 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 54 "statements.y" /* yacc.c:1646  */
-    {printf("Printing %s\n", (yyvsp[-1].str));}
+    {printf("Saida : %s\n", (yyvsp[-1].str));}
 #line 1380 "y.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1985,14 +1985,14 @@ void updateSymbolValConditional(int condition, char symbol, int val)
 
 
 int main (void) {
-	/* init symbol table */
+
 	int i;
 	for(i=0; i<52; i++) {
 		symbols[i] = 0;
 	}
-
+    {printf("\n Iniciando compilador ! \n");}
 	return yyparse ( );
 }
 
-void yyerror (char *s) {fprintf (stderr, "%s\n", s);} 
+void yyerror (char *s) {  fprintf (stderr, "%s\n", s); } 
 

@@ -4,8 +4,8 @@
 %%
 
 
-"print"                {return print;}
-"exit"                 {return exit_command;}
+"imprima"                {return print;}
+"sair"                 {return exit_command;}
 "se"    {return tokenIf;}
 "entao"    {return tokenThen;}
 "senao"    {return tokenElse;}

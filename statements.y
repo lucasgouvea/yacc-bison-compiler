@@ -1,6 +1,6 @@
 %{
 void yyerror (char *s);
-#include <stdio.h>     /* C declarations used in actions */
+#include <stdio.h>    
 #include <stdlib.h>
 int symbols[52];
 int symbolVal(char symbol);
@@ -19,7 +19,7 @@ int LStatement(char symbol, int val);
 
 %}
 
-%union {int num; char id; char* str;}         /* Yacc definitions */
+%union {int num; char id; char* str;}        
 %start line
 %token print
 %token exit_command
@@ -41,17 +41,17 @@ int LStatement(char symbol, int val);
 %%
 
 
-line    : assignment ';'		{;}
-        | conditional ';'       {;}
-        | whileloop ';'         {;}
+line    : assignment ';'		{printf("\n Atribuicao  \n");}
+        | conditional ';'       {printf("\n Condicional 'if' \n");}
+        | whileloop ';'         {printf("\n Laco de repeticao 'while' \n");}
 		| exit_command ';'		{exit(EXIT_SUCCESS);}
-		| print exp ';'			{printf("Printing %d\n", $2);}
-		| print word ';'        {printf("Printing %s\n", $2);}
-		| line assignment ';'	{;}
-		| line whileloop ';'    {printf("WHILE-LOOP");}
-		| line conditional ';'	{;}
-		| line print exp ';'	{printf("Printing %d\n", $3);}
-		| line print word ';'   {printf("Printing %s\n", $3);}
+		| print exp ';'			{printf("Saida : %d\n", $2);}
+		| print word ';'        {printf("Saida : %s\n", $2);}
+		| line assignment ';'	{printf("\n Atribuicao \n");}
+		| line whileloop ';'    {printf("\n Laco de repetico 'while' \n");}
+		| line conditional ';'	{printf("\n Condicional \n");}
+		| line print exp ';'	{printf("Saida : %d\n", $3);}
+		| line print word ';'   {printf("Saida : %s\n", $3);}
 		| line exit_command ';'	{exit(EXIT_SUCCESS);}
 
         ;
@@ -308,14 +308,14 @@ void updateSymbolValConditional(int condition, char symbol, int val)
 
 
 int main (void) {
-	/* init symbol table */
+
 	int i;
 	for(i=0; i<52; i++) {
 		symbols[i] = 0;
 	}
-
+    {printf("\n Iniciando compilador ! \n");}
 	return yyparse ( );
 }
 
-void yyerror (char *s) {fprintf (stderr, "%s\n", s);} 
+void yyerror (char *s) {  fprintf (stderr, "%s\n", s); } 
 
