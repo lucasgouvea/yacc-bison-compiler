@@ -24,7 +24,7 @@
 [0-9]+                 {yylval.num = atoi(yytext); return number;}
 [ \t\n]                ;
 [-+=;*/^%]           	   {return yytext[0];}
-.                      {ECHO; yyerror ("unexpected character");}
+.                      {ECHO; yyerror ("token nao reconhecido");}
 
 %%
 int yywrap (void) {return 1;}
