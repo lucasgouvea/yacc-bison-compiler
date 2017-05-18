@@ -1,6 +1,6 @@
-Trabalho da disciplina Compiladores sob orientação da Profª Drª Thatyana de Faria Piola Seraphim, no curso de Engenharia da Computação - Universidade Federal de Itajubá.
+**Trabalho da disciplina Compiladores sob orientação da Profª Drª Thatyana de Faria Piola Seraphim, no curso de Engenharia da Computação - Universidade Federal de Itajubá.**
 
-Objetivo: criar, desenvolver e implementar um analisador léxico e um analisador sintático.
+**Objetivo**: criar, desenvolver e implementar um analisador léxico e um analisador sintático.
 Suporte à comandos de:
     -Atribuição
     -Entrada e saída
@@ -10,7 +10,7 @@ Suporte à operadores relacionais, lógicos e aritméticos.
 Implementação Bison/Yacc + FLEX.
 
 
---Manual--
+**Manual**
 
 
 Um 'identificador' é uma variável que pode ser um caracter de 'a' à 'z' ou de 'A' à 'Z' ( [a-zA-Z] ).
@@ -31,7 +31,7 @@ Comando de repetição 'enquanto-faça'(while):
     enquanto identificador operador_relacional expressão faca identificador = identificador operador termo;
 
     
---Programas exemplos--
+**Programas exemplos**
 
 1)
 
@@ -57,7 +57,7 @@ Comando de repetição 'enquanto-faça'(while):
     imprima c; 
 
     
---Instruções para usar--
+**Instruções de uso**
 
 Enquanto no diretório do projeto, execute os seguintes comandos:
 
@@ -67,7 +67,7 @@ Enquanto no diretório do projeto, execute os seguintes comandos:
 
 Depois desse procedimento, execute o programa.
 
---Expresões dos tokens--
+**Expresões dos tokens**
 
 
 | Token        | Retorno           |
@@ -95,7 +95,7 @@ Depois desse procedimento, execute o programa.
 | .  | ECHO e yyerror ("token nao reconhecido")     |
 
 
-Árvore de derivação para a cadeia a = b + c
+**Árvore de derivação para a cadeia a = b + c**
 
 ![arvore_derivacao](arvore_derivacao.png)
 
