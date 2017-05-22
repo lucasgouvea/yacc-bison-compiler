@@ -99,12 +99,17 @@ Depois desse procedimento, execute o programa.
 
 ![arvore_derivacao](arvore_derivacao.png)
 
+
+**Autômatos finitos determinísticos**
+
+![arvore_derivacao](assignment.png)
+![exp](exp.png)
+![if](if.png)
+![term](term.png)
+
+
+
 --FALTA--
-
-2. Os autômatos finitos determinı́sticos (AFDs) obtidos a partir das expressões regulares. Caso tenha obtido
-um autômato finito não determinı́stico (AFN), este deverá ser apresentado, assim como o AFN-estendido
-correspondente, obtido a partir do emprego do método de Thompson.
-
 
 4. Método de análise sintática utilizado. Inclua neste item, todas as transformações que foram realizadas,
 de acordo com o método utilizado.
