@@ -25,7 +25,9 @@ Comando de atribuição:
 Comando de condicional (if-then):
 
     se condição entao identificador = expressão;
-    
+
+Para o comando de condicional, o compilador gerará um arquivo chamado "programaCriado.c" com o respectivo código executado, que pode então ser compilado com o gcc.
+
 Comando de repetição 'enquanto-faça'(while):
     
     enquanto identificador operador_relacional expressão faca identificador = identificador operador termo;
@@ -106,10 +108,3 @@ Depois desse procedimento, execute o programa.
 ![exp](exp.png)
 ![if](if.png)
 ![term](term.png)
-
-
-
---FALTA--
-
-4. Método de análise sintática utilizado. Inclua neste item, todas as transformações que foram realizadas,
-de acordo com o método utilizado.
